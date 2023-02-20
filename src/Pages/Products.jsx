@@ -11,7 +11,7 @@ const Products = () => {
 
   if (isError)
     errors.forEach((error) =>
-      toast(error.response.data.message, { type: "error" })
+      toast(error.response.data.error, { type: "error" })
     );
 
   return (

@@ -47,7 +47,7 @@ const Login = () => {
       navigate("/products");
     } catch (error) {
       console.log(error);
-      let message = error.response.data.message;
+      let message = error.response.data.error;
       toast(message, { type: "error" });
     }
   }
