@@ -1,9 +1,17 @@
+import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate()
+  function handleLogout() {
+    localStorage.removeItem("token");
+    delete axios.defaults.headers.common["x-auth-token"];
+    navigate("/");
+  }
+
   return (
-    <header className="text-bg-primary py-3">
+    <header className="text-bg-primary py-3 sticky-top shadow-lg">
       <nav className="container d-flex align-items-center justify-content-between">
         <Link to="/" className="text-decoration-none fs-2 text-warning">
           Najot Market
@@ -20,7 +28,7 @@ const Header = () => {
             </Link>
           </li>
           <li className="fs-3">
-            <button className="btn btn-warning">
+            <button onClick={handleLogout} className="btn btn-warning">
               <i className="fa-solid fa-arrow-right-from-bracket fa-2x"></i>
             </button>
           </li>
