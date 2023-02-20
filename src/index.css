@@ -1,0 +1,9 @@
+.our-product-class h2 {
+  height: 70px;
+  overflow-y: auto;
+}
+
+.our-product-class p {
+  height: 120px;
+  overflow-y: auto;
+}
