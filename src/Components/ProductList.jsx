@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const ProductList = ({ products }) => {
+  const dispatch = useDispatch();
+  function handleAddToCart(p) {
+    dispatch({ type: "ADD_TO_CART", payload: p });
+  }
+
   return products.map((product) => (
     <div className="col-md-3 our-product-class" key={product.id}>
       <div className="card h-100 d-flex flex-column">
@@ -22,13 +28,16 @@ const ProductList = ({ products }) => {
             </span>
           </div>
         </div>
-        <div className="card-footer">
-          <Link
-            className="btn btn-success w-100"
-            to={`/products/${product.id}`}
-          >
+        <div className="card-footer d-flex gap-1">
+          <Link className="btn btn-info w-50" to={`/products/${product.id}`}>
             Read more
           </Link>
+          <button
+            onClick={() => handleAddToCart(product)}
+            className="btn btn-success w-50"
+          >
+            Add To Cart
+          </button>
         </div>
       </div>
     </div>

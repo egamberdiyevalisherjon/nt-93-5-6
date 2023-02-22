@@ -5,7 +5,10 @@ const ProductListPlaceholder = () => {
     <div className="col-md-3 our-product-class" key={item}>
       <div className="card" aria-hidden="true">
         <div className="card-img-top placeholder-glow">
-          <div style={{ aspectRatio: "1" }} className="placeholder col-12"></div>
+          <div
+            style={{ aspectRatio: "1" }}
+            className="placeholder col-12"
+          ></div>
         </div>
         <div className="card-body">
           <h5 className="card-title placeholder-glow">
@@ -18,11 +21,18 @@ const ProductListPlaceholder = () => {
             <span className="placeholder col-6"></span>
             <span className="placeholder col-8"></span>
           </p>
-          <a
-            href="#"
-            tabIndex="-1"
-            className="btn btn-success disabled placeholder col-12"
-          ></a>
+          <div className="placeholder-glow d-flex gap-1">
+            <a
+              href="#"
+              tabIndex="-1"
+              className="btn btn-info disabled placeholder col-6"
+            ></a>
+            <a
+              href="#"
+              tabIndex="-1"
+              className="btn btn-success disabled placeholder col-6"
+            ></a>
+          </div>
         </div>
       </div>
     </div>
