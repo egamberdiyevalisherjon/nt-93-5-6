@@ -8,7 +8,7 @@ const Header = () => {
 
   const { items } = useSelector((state) => state.cart);
 
-  console.log(items);
+  // console.log(items);
 
   function handleLogout() {
     localStorage.removeItem("token");
