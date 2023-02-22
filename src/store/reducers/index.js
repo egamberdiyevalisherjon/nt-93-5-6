@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
+import cartReducer from './cart';
 
 const rootReducer = combineReducers({
-  cart: () => ({}),
+  cart: cartReducer,
   user: () => ({}),
   settings: () => ({}),
   lapshalar: () => ({}),

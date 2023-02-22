@@ -1,9 +1,15 @@
 import axios from "axios";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  const { items } = useSelector((state) => state.cart);
+
+  console.log(items);
+
   function handleLogout() {
     localStorage.removeItem("token");
     delete axios.defaults.headers.common["x-auth-token"];
@@ -25,6 +31,14 @@ const Header = () => {
           <li className="fs-3">
             <Link to={"/products"} className="text-reset text-decoration-none">
               Shop
+            </Link>
+          </li>
+          <li className="fs-3">
+            <Link to={"/cart"} className="text-reset text-decoration-none">
+              <i className="fa-solid fa-shopping-cart"></i>
+              <span className="text-bg-danger d-inline-block px-3 ms-3 rounded">
+                {items.length}
+              </span>
             </Link>
           </li>
           <li className="fs-3">
