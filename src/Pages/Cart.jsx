@@ -1,31 +1,76 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const Cart = () => {
+  const dispatch = useDispatch();
   const { items } = useSelector(({ cart }) => cart);
-  console.log(items);
+
+  let total = items.reduce((previousValue, currentItem) => {
+    return previousValue + currentItem.product.price * currentItem.count;
+  }, 0);
+
+  function handleIncItemCount(id) {
+    dispatch({
+      type: "INC_ITEM_COUNT",
+      payload: id,
+    });
+  }
+
+  function handleDecItemCount(id) {
+    dispatch({
+      type: "DEC_ITEM_COUNT",
+      payload: id,
+    });
+  }
+
+  function handleRemoveFromCart(id) {
+    dispatch({
+      type: "REMOVE_FROM_CART",
+      payload: id,
+    });
+
+    toast("Removed", { type: "info" });
+  }
+
   return (
     <div>
       <div className="container py-5">
-        <h1>Your Cart</h1>
+        <div className="d-flex align-items-center justify-content-between">
+          <h1>Your Cart</h1>
+          <p className="h3">Total: ${total.toFixed(2)}</p>
+        </div>
         <ul className="list-group">
           {items.map((item) => (
             <li
               className="list-group-item d-flex align-items-center gap-3"
-              key={item.id}
+              key={item.product.id}
             >
-              <img width={100} height={100} src={item.image} alt="" />
-              <h2 className="text-truncate">{item.title}</h2>
-              <p className="ms-auto m-0">${item.price}</p>
+              <img width={100} height={100} src={item.product.image} alt="" />
+              <h2 className="text-truncate">{item.product.title}</h2>
+              <p className="ms-auto m-0">${item.product.price}</p>
               <div className="d-flex align-items-center gap-3">
-                <button className="btn btn-secondary">-</button>
-                <span>1</span>
-                <button className="btn btn-secondary">+</button>
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => handleDecItemCount(item.product.id)}
+                >
+                  -
+                </button>
+                <span>{item.count}</span>
+                <button
+                  onClick={() => handleIncItemCount(item.product.id)}
+                  className="btn btn-secondary"
+                >
+                  +
+                </button>
               </div>
-              <span>${item.price}</span>
+              <span>${(item.product.price * item.count).toFixed(2)}</span>
 
               <div className="btn-group">
-                <button className="btn btn-danger">
+                <button
+                  onClick={() => handleRemoveFromCart(item.product.id)}
+                  className="btn btn-danger"
+                >
                   <i className="fa-solid fa-times"></i>
                 </button>
               </div>
