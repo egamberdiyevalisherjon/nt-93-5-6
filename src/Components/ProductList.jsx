@@ -1,8 +1,13 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { addToCart } from "../rt/slices/cart";
 
 const ProductList = ({ products }) => {
-  function handleAddToCart(p) {}
+  const dispatch = useDispatch();
+  function handleAddToCart(p) {
+    dispatch(addToCart(p));
+  }
 
   return products.map((product) => (
     <div className="col-md-3 our-product-class" key={product.id}>

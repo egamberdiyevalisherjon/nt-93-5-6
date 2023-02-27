@@ -1,18 +1,28 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { decItemCount, incItemCount, removeFromCart } from "../rt/slices/cart";
 
 const Cart = () => {
-  // let total = items.reduce((previousValue, currentItem) => {
-  //   return previousValue + currentItem.product.price * currentItem.count;
-  // }, 0);
+  const { items } = useSelector((state) => state.cart);
 
-  let total = 0;
+  const dispatch = useDispatch();
 
-  function handleIncItemCount(id) {}
+  let total = items.reduce((previousValue, currentItem) => {
+    return previousValue + currentItem.product.price * currentItem.count;
+  }, 0);
 
-  function handleDecItemCount(id) {}
+  function handleIncItemCount(id) {
+    dispatch(incItemCount(id));
+  }
+  
+  function handleDecItemCount(id) {
+    dispatch(decItemCount(id));
+  }
 
   function handleRemoveFromCart(id) {
+    dispatch(removeFromCart(id));
+
     toast("Removed", { type: "info" });
   }
 
@@ -24,7 +34,7 @@ const Cart = () => {
           <p className="h3">Total: ${total.toFixed(2)}</p>
         </div>
         <ul className="list-group">
-          {/* {items.map((item) => (
+          {items.map((item) => (
             <li
               className="list-group-item d-flex align-items-center gap-3"
               key={item.product.id}
@@ -58,7 +68,7 @@ const Cart = () => {
                 </button>
               </div>
             </li>
-          ))} */}
+          ))}
         </ul>
       </div>
     </div>
