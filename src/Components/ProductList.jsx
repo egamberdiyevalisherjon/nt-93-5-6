@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { cartContext } from "../context/index";
 
 const ProductList = ({ products }) => {
-  function handleAddToCart(p) {}
+  const { addToCart } = useContext(cartContext);
+
+  function handleAddToCart(p) {
+    addToCart(p);
+  }
 
   return products.map((product) => (
     <div className="col-md-3 our-product-class" key={product.id}>

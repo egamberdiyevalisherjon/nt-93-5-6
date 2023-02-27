@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { toast } from "react-toastify";
+import { cartContext } from "../context/index";
 
 const Cart = () => {
-  // let total = items.reduce((previousValue, currentItem) => {
-  //   return previousValue + currentItem.product.price * currentItem.count;
-  // }, 0);
+  const { removeFromCart, items } = useContext(cartContext);
 
-  let total = 0;
+  let total = items.reduce((previousValue, currentItem) => {
+    return previousValue + currentItem.product.price * currentItem.count;
+  }, 0);
 
   function handleIncItemCount(id) {}
 
   function handleDecItemCount(id) {}
 
   function handleRemoveFromCart(id) {
+    removeFromCart(id);
     toast("Removed", { type: "info" });
   }
 
@@ -24,7 +26,7 @@ const Cart = () => {
           <p className="h3">Total: ${total.toFixed(2)}</p>
         </div>
         <ul className="list-group">
-          {/* {items.map((item) => (
+          {items.map((item) => (
             <li
               className="list-group-item d-flex align-items-center gap-3"
               key={item.product.id}
@@ -58,7 +60,7 @@ const Cart = () => {
                 </button>
               </div>
             </li>
-          ))} */}
+          ))}
         </ul>
       </div>
     </div>

@@ -18,10 +18,13 @@ import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import { ToastContainer } from "react-toastify";
+import Provider from "./context";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Router>
-    <App />
+    <Provider>
+      <App />
+    </Provider>
     <ToastContainer theme="colored" />
   </Router>
 );

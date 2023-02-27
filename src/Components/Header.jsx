@@ -1,12 +1,17 @@
 import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { cartContext } from "../context/index";
 
 const Header = () => {
   const navigate = useNavigate();
 
+  const { items } = useContext(cartContext);
+
+console.log(items);
+
   // const { items } = useSelector((state) => state.cart);
-  const { items } = { items: [] };
+  // const { items } = { items: [] };
 
   // console.log(items);
 
