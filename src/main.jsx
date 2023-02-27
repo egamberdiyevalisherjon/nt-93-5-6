@@ -19,15 +19,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import { ToastContainer } from "react-toastify";
 
-// redux
-import { Provider } from "react-redux";
-import store from "./store";
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Router>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <App />
     <ToastContainer theme="colored" />
   </Router>
 );

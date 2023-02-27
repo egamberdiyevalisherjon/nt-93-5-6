@@ -1,35 +1,18 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 const Cart = () => {
-  const dispatch = useDispatch();
-  const { items } = useSelector(({ cart }) => cart);
+  // let total = items.reduce((previousValue, currentItem) => {
+  //   return previousValue + currentItem.product.price * currentItem.count;
+  // }, 0);
 
-  let total = items.reduce((previousValue, currentItem) => {
-    return previousValue + currentItem.product.price * currentItem.count;
-  }, 0);
+  let total = 0;
 
-  function handleIncItemCount(id) {
-    dispatch({
-      type: "INC_ITEM_COUNT",
-      payload: id,
-    });
-  }
+  function handleIncItemCount(id) {}
 
-  function handleDecItemCount(id) {
-    dispatch({
-      type: "DEC_ITEM_COUNT",
-      payload: id,
-    });
-  }
+  function handleDecItemCount(id) {}
 
   function handleRemoveFromCart(id) {
-    dispatch({
-      type: "REMOVE_FROM_CART",
-      payload: id,
-    });
-
     toast("Removed", { type: "info" });
   }
 
@@ -41,7 +24,7 @@ const Cart = () => {
           <p className="h3">Total: ${total.toFixed(2)}</p>
         </div>
         <ul className="list-group">
-          {items.map((item) => (
+          {/* {items.map((item) => (
             <li
               className="list-group-item d-flex align-items-center gap-3"
               key={item.product.id}
@@ -75,7 +58,7 @@ const Cart = () => {
                 </button>
               </div>
             </li>
-          ))}
+          ))} */}
         </ul>
       </div>
     </div>

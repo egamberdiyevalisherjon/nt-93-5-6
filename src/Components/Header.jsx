@@ -1,12 +1,12 @@
 import axios from "axios";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 const Header = () => {
   const navigate = useNavigate();
 
-  const { items } = useSelector((state) => state.cart);
+  // const { items } = useSelector((state) => state.cart);
+  const { items } = { items: [] };
 
   // console.log(items);
 
