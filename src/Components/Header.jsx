@@ -2,9 +2,18 @@ import axios from "axios";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
+  const {
+    t,
+    i18n: { language, changeLanguage },
+  } = useTranslation();
   const navigate = useNavigate();
+
+  function handleChangeLang() {
+    changeLanguage(language === "en" ? "uz" : "en");
+  }
 
   const { items } = useSelector((state) => state.cart);
 
@@ -25,7 +34,7 @@ const Header = () => {
         <ul className="list-unstyled m-0 d-flex align-items-center gap-3">
           <li className="fs-3">
             <Link to={"/products"} className="text-reset text-decoration-none">
-              Products
+              {t("header-products-text")}
             </Link>
           </li>
           <li className="fs-3">
@@ -40,6 +49,11 @@ const Header = () => {
                 {items.length}
               </span>
             </Link>
+          </li>
+          <li className="fs-3">
+            <button onClick={handleChangeLang} className="btn btn-dark">
+              {language === "en" ? "O'zbekcha" : "English"}
+            </button>
           </li>
           <li className="fs-3">
             <button onClick={handleLogout} className="btn btn-warning">

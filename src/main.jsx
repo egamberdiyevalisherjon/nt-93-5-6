@@ -23,6 +23,9 @@ import { ToastContainer } from "react-toastify";
 import { Provider } from "react-redux";
 import store from "./store";
 
+// i18n => internationalization
+import "./i18n";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Router>
     <Provider store={store}>
