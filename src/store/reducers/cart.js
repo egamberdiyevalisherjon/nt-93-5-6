@@ -1,13 +1,20 @@
 let initialState = JSON.parse(
-  localStorage.getItem("cart-items") || "{ items: [], total: 0 }"
+  localStorage.getItem("cart-items") || '{ "items": [], "total": 0 }'
 );
 
 function cartReducer(state = initialState, action) {
   switch (action.type) {
     case "ADD_TO_CART": {
+      let p = state.items.find((item) => item.product.id === action.payload.id);
       let newState = {
         ...state,
-        items: [...state.items, { product: action.payload, count: 1 }],
+        items: p
+          ? state.items.map((item) =>
+              item.product.id === action.payload.id
+                ? { ...item, count: item.count + 1 }
+                : item
+            )
+          : [...state.items, { product: action.payload, count: 1 }],
       };
 
       localStorage.setItem("cart-items", JSON.stringify(newState));
